@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Генератор идей для стилизации</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px; text-align: center; }
+  h1 { color: #1F4E79; margin-bottom: 10px; }
+  button { font-size: 18px; padding: 10px 20px; margin: 20px; cursor: pointer; background: #4F81BD; color: white; border: none; border-radius: 8px; transition: 0.3s; }
+  button:hover { background: #3A6A9F; }
+  .combo { display: flex; justify-content: center; margin: 15px auto; max-width: 800px; gap: 10px; }
+  .card { flex: 1; padding: 15px; border-radius: 12px; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: 0.3s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+  .vid { background: #FF6F61; }
+  .obekt { background: #6FA8DC; }
+  .kachestvo { background: #FFD966; color: #333; }
+  .card p { margin: 5px 0; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h1>🎨 Генератор идей для стилизации / Stylization Idea Generator</h1>
+<p>Нажми кнопку, чтобы получить 3 случайные комбинации. / Click the button to generate 3 random combinations.</p>
+<button onclick="generate()">Сгенерировать 3 комбинации / Generate 3 Combinations</button>
+
+<div id="results"></div>
+
+<script>
+const vid = [
+  ["Маляр","Painter"], ["Танцовщица","Dancer"], ["Космонавт","Astronaut"], ["Ведьма","Witch"],
+  ["Дворник","Janitor"], ["Циркач","Circus performer"], ["Робот","Robot"], ["Учёный","Scientist"],
+  ["Моряк","Sailor"], ["Повар","Chef"], ["Самурай","Samurai"], ["Археолог","Archaeologist"],
+  ["Музыкант","Musician"], ["Путешественник","Traveler"], ["Художник","Artist"], ["Клоун","Clown"],
+  ["Принцесса","Princess"], ["Механик","Mechanic"], ["Птицелов","Birdcatcher"], ["Садовник","Gardener"]
+];
+
+const obekt = [
+  ["Пингвин","Penguin"], ["Дом","House"], ["Кактус","Cactus"], ["Кот","Cat"], ["Гриб","Mushroom"],
+  ["Рыба","Fish"], ["Книга","Book"], ["Чайник","Teapot"], ["Велосипед","Bicycle"], ["Облако","Cloud"],
+  ["Дерево","Tree"], ["Сова","Owl"], ["Скворечник","Birdhouse"], ["Луна","Moon"], ["Камень","Stone"],
+  ["Часы","Clock"], ["Ракушка","Seashell"], ["Карандаш","Pencil"], ["Печенье","Cookie"], ["Лампа","Lamp"]
+];
+
+const kachestvo = [
+  ["Чёрно-белый","Black & White"], ["Геометричный","Geometric"], ["Акварельный","Watercolor"],
+  ["Пиксель-арт","Pixel art"], ["Минималистичный","Minimalistic"], ["Ретро","Retro"],
+  ["Гротескный","Grotesque"], ["Неоновый","Neon"], ["Сказочный","Fairy-tale"], ["Текстурный","Textured"],
+  ["Детский","Childlike"], ["Реалистичный","Realistic"], ["Коллажный","Collage"], ["Силуэтный","Silhouette"],
+  ["Из пластилина","Clay style"], ["Глянцевый","Glossy"], ["Объёмный","3D"], ["Граффити","Graffiti"],
+  ["Бумажная аппликация","Paper cut"], ["Старинная гравюра","Vintage engraving"]
+];
+
+function generate() {
+  const results = document.getElementById('results');
+  results.innerHTML = ''; // очистка предыдущих результатов
+
+  for(let i=0; i<3; i++) {
+    const v = vid[Math.floor(Math.random()*vid.length)];
+    const o = obekt[Math.floor(Math.random()*obekt.length)];
+    const k = kachestvo[Math.floor(Math.random()*kachestvo.length)];
+
+    const comboDiv = document.createElement('div');
+    comboDiv.className = 'combo';
+
+    const vidDiv = document.createElement('div');
+    vidDiv.className = 'card vid';
+    vidDiv.innerHTML = `<p>Вид / Type:</p><p>${v[0]} / ${v[1]}</p>`;
+
+    const obektDiv = document.createElement('div');
+    obektDiv.className = 'card obekt';
+    obektDiv.innerHTML = `<p>Объект / Object:</p><p>${o[0]} / ${o[1]}</p>`;
+
+    const kachDiv = document.createElement('div');
+    kachDiv.className = 'card kachestvo';
+    kachDiv.innerHTML = `<p>Качество / Style:</p><p>${k[0]} / ${k[1]}</p>`;
+
+    comboDiv.appendChild(vidDiv);
+    comboDiv.appendChild(obektDiv);
+    comboDiv.appendChild(kachDiv);
+
+    results.appendChild(comboDiv);
+  }
+}
+</script>
+
+</body>
+</html>
